@@ -1,0 +1,2 @@
+This is my txt file!
+Just pure text with nothing special.
