@@ -10,11 +10,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV='development' node app.js",
     "nodemon": "NODE_ENV='development' nodemon app.js",
-    "publish": "NODE_ENV='production'git push heroku"
+    "publish": "NODE_ENV='production' git push heroku"
   },
   "author": "Me",
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "mocha": "^4.1.0"
   }
 }
