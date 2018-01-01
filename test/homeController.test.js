@@ -1,6 +1,6 @@
 const request = require('supertest');
 const expect = require('expect');
-const app = require('../app').app;
+const app = require('../server').app;
 
 describe('HomeController Tests', () => {
     describe('GET /api/home', () => {

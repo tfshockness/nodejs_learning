@@ -8,14 +8,16 @@
   },
   "scripts": {
     "test": "mocha ./test/*.test.js",
-    "start": "NODE_ENV='development' node app.js",
-    "watch": "NODE_ENV='development' nodemon --exec 'npm test' app.js",
+    "start": "NODE_ENV='development' node server.js",
+    "watch": "NODE_ENV='development' nodemon --exec 'npm test' server.js",
     "publish": "NODE_ENV='production' git push heroku"
   },
   "author": "Me",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mongodb": "^3.0.1",
+    "mongoose": "^5.0.0-rc0"
   },
   "devDependencies": {
     "expect": "^22.0.3",
