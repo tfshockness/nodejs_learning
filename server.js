@@ -1,16 +1,23 @@
-var express = require('express');
-var config = require('./src/lib/config');
-var home = require('./src/controller/homeController');
+const express = require('express');
+const config = require('./src/lib/config');
+const home = require('./src/controller/homeController');
+const todos = require('./src/controller/todoController');
 //IF express is going to point to a public folder to host a page, the function express.static 
 //have to be set as a middleware for express.
 //To add a middleware use use()
 
 //app.use(express.static(__dirname + '/public')); //This will start express server looking for a /public to host
 
-var app = express();
+const app = express();
+app.get('/', (req, res) => {
+    res.send('Welcome to my API.');
+});
+
 app.get('/api/home', home.get);
 app.get('/api/404', home.error);
+app.get('/api/todos', todos.getTodos);
+app.post('/api/todos', todos.postTodos);
 app.listen(config.port, () => console.log(`Server running on port ${config.port}.`));
 
-
+console.log(app);
 module.exports.app = app;
