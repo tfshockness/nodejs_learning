@@ -1,7 +1,8 @@
 const request = require('supertest');
 const expect = require('expect');
 const { app } = require('../server');
-const Todo = require('../src/models/todo')
+const Todo = require('../src/models/todo');
+const { ObjectID } = require('mongodb');
 
 //beforeEach( done => Todo.remove({}).then( () => done()));
 
@@ -42,5 +43,28 @@ describe('TodoController TEST', () => {
                 })
                 .end(done);
         });
+    });
+    describe('GET /api/todos/:id', () => {
+        it('should return a todo by Id', async (done) => {
+            const todo =  await Todo({
+                title: 'Testing',
+                text: 'Creating a test for GetById'
+            }).save();
+
+            request(app)
+                .get(`/api/todos/${todo._id}`)
+                .expect(200)
+                .expect(res => {
+                    expect(res.body.text).toBe('Creating a test for GetById');
+                })
+                .end(done);
+        });
+
+        it('should return a 404 for a non-existing ID', done => {
+            request(app)
+                .get('/api/todos/123123')
+                .expect(404)
+                .end(done);
+        })
     });
 });
