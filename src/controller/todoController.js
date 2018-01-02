@@ -15,7 +15,7 @@ module.exports = {
         }
         
     },
-    postTodos: async (req, res) => {
+    postTodos: async(req, res) => {
         try {
             const todo = await new Todo(req.body).save();
             res.status(201).send(todo);
@@ -23,6 +23,5 @@ module.exports = {
         } catch (e) {
             res.status(400).send(e);
         }
-        res.send('Tesint Post');
     }
 }

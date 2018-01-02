@@ -10,7 +10,8 @@
     "test": "DB='mongodb://localhost:27017/TodoApp_Test' mocha ./test/*.test.js",
     "start": "NODE_ENV='development' node server.js",
     "watch": "NODE_ENV='development' nodemon server.js",
-    "publish": "NODE_ENV='production' git push heroku"
+    "publish": "NODE_ENV='production' git push heroku",
+    "inspect": "NODE_ENV='development' node --inspect-brk server.js "
   },
   "author": "Me",
   "license": "MIT",
