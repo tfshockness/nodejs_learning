@@ -1,17 +1,16 @@
 const Todo = require('../models/todo');
 
 module.exports = {
-    getTodos: (req, res) => {
+    getTodos: async (req, res) => {
         try{
-            Todo.find( (err, todos) => {
-                err ? res.status(500).send(err)
-                    : res.send(JSON.stringify(todos));
-            });
+            const todos = await Todo.find();
+            res.status(200).send(todos);
+            // Todo.find( (err, todos) => {
+            //     err ? res.status(500).send(err)
+            //         : res.send(JSON.stringify(todos));
+            // });
         }catch(e){
-            res.send({
-                error: 'Something went wrong!',
-                msg: e
-            })
+            res.status(500).send(e)
         }
         
     },
