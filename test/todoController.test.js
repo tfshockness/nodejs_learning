@@ -1,9 +1,9 @@
 const request = require('supertest');
 const expect = require('expect');
 const { app } = require('../server');
-const { Todo } = require('../src/models/todo')
+const Todo = require('../src/models/todo')
 
-//beforeEach( done => Todo.remove().then( () => done()));
+//beforeEach( done => Todo.remove({}).then( () => done()));
 
 describe('TodoController TEST', () => {
     describe('POST /api/todos', () => {
@@ -25,6 +25,22 @@ describe('TodoController TEST', () => {
                 .send(emptyTodo)
                 .expect(400)
                 .end(done);
-        })
+        });
+    });
+    describe('GET /api/todos', () => {
+        it('should return a array of Todo', done => {
+            var count = 0;
+            Todo.count({}, (err, c) => {
+                count = c;
+            });
+
+            request(app)
+                .get('/api/todos')
+                .expect(200)
+                .expect(res => {
+                    expect(res.body.length).toBe(count);
+                })
+                .end(done);
+        });
     });
 });

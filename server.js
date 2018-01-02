@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 app.get('/api/home', home.get);
 app.get('/api/404', home.error);
 app.get('/api/todos', todos.getTodos);
+app.get('/api/todos/:id', todos.getTodoById);
 app.post('/api/todos', todos.postTodos);
 
 
